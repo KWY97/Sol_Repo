@@ -3,10 +3,8 @@ def find_line(N):
     line = 1
 
     while True:
-        # 현재 줄의 원소의 개수
         num_in_line = line
 
-        # 현재 줄의 가장 마지막 원소
         max_num_in_line = current_num + num_in_line - 1
 
         if current_num <= N <= max_num_in_line:
@@ -17,8 +15,6 @@ def find_line(N):
         line += 1
 
 N = int(input())
-bunja = 1
-bunmo = 1
 
 line, position = find_line(N)
 ans_li = []
