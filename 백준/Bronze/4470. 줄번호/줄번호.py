@@ -1,8 +1,4 @@
 N = int(input())
-my_li = []
-
-for _ in range(N):
-    my_li.append(input())
-
-for i in range(N):
-    print(f'{i+1}. {my_li[i]}')
+for i in range(1, N+1):
+    my_str = input()
+    print(f'{i}. {my_str}')
