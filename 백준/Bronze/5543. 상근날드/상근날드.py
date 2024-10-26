@@ -1,12 +1,10 @@
 hambergers = []
 drinks = []
 
-for _ in range(3):
-    hamberger = int(input())
-    hambergers.append(hamberger)
-
-for _ in range(2):
-    drink = int(input())
-    drinks.append(drink)
+for i in range(5):
+    if i == 0 or i == 1 or i == 2:
+        hambergers.append(int(input()))
+    else:
+        drinks.append(int(input()))
 
 print(min(hambergers) + min(drinks) - 50)
