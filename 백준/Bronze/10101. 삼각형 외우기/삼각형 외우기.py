@@ -1,12 +1,12 @@
-a1 = int(input())
-a2 = int(input())
-a3 = int(input())
+a = int(input())
+b = int(input())
+c = int(input())
 
-if a1 + a2 + a3 != 180:
+if a + b + c != 180:
     print('Error')
-elif a1 == 60 and a2 == 60:
+elif a == b and c == 60:
     print('Equilateral')
-elif a1 == a2 or a2 == a3 or a1 == a3:
+elif a == b or b == c or a == c:
     print('Isosceles')
 else:
     print('Scalene')
