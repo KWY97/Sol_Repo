@@ -1,4 +1,4 @@
-grade = {
+a = {
     'A+': 4.3,
     'A0': 4.0,
     'A-': 3.7,
@@ -14,5 +14,4 @@ grade = {
     'F': 0.0,
 }
 
-a = input()
-print(grade[a])
+print(a[input()])
