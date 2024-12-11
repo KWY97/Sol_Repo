@@ -1,17 +1,8 @@
-eng = []
-check = []
-for i in range(97, 123):
-    eng.append(chr(i))
+my_str = input()
+alphabet_occurrence_array = [-1] * 26
 
-ans = [-1 for _ in range(26)]
+for i in range(len(my_str)):
+    if alphabet_occurrence_array[ord(my_str[i]) - ord('a')] == -1:
+        alphabet_occurrence_array[ord(my_str[i]) - ord('a')] = i
 
-s = list(input())
-
-for idx, v in enumerate(s):
-    if v not in check:
-        if v in eng:
-            i = eng.index(v)
-            ans[i] = idx
-            check.append(v)
-
-print(*ans)
+print(*alphabet_occurrence_array)
