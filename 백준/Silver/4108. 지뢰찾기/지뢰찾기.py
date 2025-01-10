@@ -1,30 +1,33 @@
+from pprint import pprint
+
+dxy = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]
+
 while True:
     n, m = map(int, input().split())
+    if n == 0 and m == 0: break
 
-    if n == 0 and m == 0:
-        break
+    mine_arr = [list(input()) for _ in range(n)]
+    result = []
 
-    arr = [list(input()) for _ in range(n)]
-    dx = [0, -1, -1, -1, 0, 1, 1, 1]
-    dy = [1, 1, 0, -1, -1, -1, 0, 1]
-
-    ans = []
     for x in range(n):
         temp = []
         for y in range(m):
-            cnt = 0
-            if arr[x][y] == "*":
-                temp.append("*")
+            if mine_arr[x][y] == '*':
+                temp.append('*')
             else:
-                for k in range(8):
-                    nx = x + dx[k]
-                    ny = y + dy[k]
+                cnt = 0
+                for dx, dy in dxy:
+                    nx = x + dx
+                    ny = y + dy
 
-                    if 0 <= nx < n and 0 <= ny < m:
-                        if arr[nx][ny] == "*":
-                            cnt += 1
+                    if nx < 0 or nx >= n or ny < 0 or ny >= m:
+                        continue
+
+                    if mine_arr[nx][ny] == '*':
+                        cnt += 1
+
                 temp.append(str(cnt))
-        ans.append(temp)
+        result.append(temp)
 
-    for i in ans:
-        print(''.join(i))
+    for i in range(n):
+        print(''.join(result[i]))
