@@ -1,7 +1,7 @@
-import sys
-n = int(input())
-li = []
-for _ in range(n):
-    li.append(int(sys.stdin.readline()))
-for i in sorted(li):
-    print(i)
+N = int(input())
+arr = []
+for _ in range(N):
+    arr.append(int(input()))
+
+for num in sorted(arr):
+    print(num)
