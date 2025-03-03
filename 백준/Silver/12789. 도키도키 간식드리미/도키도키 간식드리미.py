@@ -12,11 +12,11 @@ for num in arr:
             temp.pop()
             target += 1
     else:
+        temp.append(num)
         if (len(temp) > 1) and (temp[-2] < temp[-1]):
             print('Sad')
             flag = 1
             break
-        temp.append(num)
-
+        
 if flag == 0:
     print('Nice')
