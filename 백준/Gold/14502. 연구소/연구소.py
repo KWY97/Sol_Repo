@@ -1,13 +1,11 @@
 import sys
-import copy
 from collections import deque
 
 input = sys.stdin.readline
 
 def my_bfs():
     queue = deque()
-    temp_map = copy.deepcopy(my_map)
-
+    temp_map = [row[:] for row in my_map]
     for i in range(N):
         for j in range(M):
             if temp_map[i][j] == 2:
