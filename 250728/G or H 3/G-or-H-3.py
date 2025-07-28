@@ -3,7 +3,7 @@
 # 사진 찍어 얻을 수 있는 최대 점수
 
 N, K = map(int, input().split())
-infos = [0] * 30
+infos = [0] * 10001
 max_loc = 0
 ans = None
 
