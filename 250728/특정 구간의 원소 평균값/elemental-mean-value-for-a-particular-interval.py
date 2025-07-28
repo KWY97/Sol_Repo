@@ -9,7 +9,7 @@ for i in range(N):
             temp += numbers[k]
 
         average = temp / (j - i + 1)
-        if average in numbers:
+        if average in numbers[i:j+1]:
             cnt += 1
 
 print(cnt)
