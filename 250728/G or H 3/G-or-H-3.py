@@ -19,7 +19,7 @@ for i in range(1, max_loc-K+2):
     temp = 0
     for j in range(i, i+K+1):
         temp += infos[j]
-        if ans is None or ans < temp:
-            ans = temp
+    if ans is None or ans < temp:
+        ans = temp
 
 print(ans)
