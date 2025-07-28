@@ -7,7 +7,7 @@ for i in range(n-k+1):
     for j in range(i+1, i+k):
         temp_sum += numbers[j]
 
-        if ans is None or ans < temp_sum:
-            ans = temp_sum
+    if ans is None or ans < temp_sum:
+        ans = temp_sum
 
 print(ans)
