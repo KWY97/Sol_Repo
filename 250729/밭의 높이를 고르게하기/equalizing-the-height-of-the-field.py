@@ -8,7 +8,7 @@ for i in range(N-T+1):
     # 구간 잡기
     for j in range(i, i+T):
         # 구간 내 높이 비교
-        diff = abs(heights[j]-T)
+        diff = abs(heights[j]-H)
         if diff != 0:
             cost += diff
 
