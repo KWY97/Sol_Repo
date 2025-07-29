@@ -1,19 +1,16 @@
 N, H, T = map(int, input().split())
 heights = list(map(int, input().split()))
-min_cost = None
+# 초기 값 설정
+cost = sum(abs(height-H) for height in heights[:T])
+min_cost = cost
 
-# 시작점 잡기
-for i in range(N-T+1):
-    cost = 0
-    # 구간 잡기
-    for j in range(i, i+T):
-        # 구간 내 높이 비교
-        diff = abs(heights[j]-H)
-        if diff != 0:
-            cost += diff
+for i in range(T, N):
+    # 새로운 비용 추가
+    cost += abs(heights[i]-H)
+    # 이전 값 제거
+    cost -= abs(heights[i-T]-H)
 
-    # 최소 비용 구하기
-    if min_cost is None or min_cost > cost:
+    if min_cost > cost:
         min_cost = cost
 
 print(min_cost)
