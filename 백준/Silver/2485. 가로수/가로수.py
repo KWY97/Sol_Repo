@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 def gcd(a, b):
     while b != 0:
         a, b = b, a % b
@@ -5,19 +8,15 @@ def gcd(a, b):
 
 n = int(input())
 trees = [int(input()) for _ in range(n)]
-diffs = []
 cnt = 0
 
-for i in range(n-1):
-    diffs.append(abs(trees[i+1] - trees[i]))
+gcd_diff = trees[1] - trees[0]
 
-gcd_diff = diffs[0]
-
-for j in range(1, n-1):
-    gcd_diff = gcd(gcd_diff, diffs[j])
+for j in range(2, n):
+    gcd_diff = gcd(gcd_diff, trees[j] - trees[j-1])
 
 min_tree = trees[0]
-max_tree = trees[n-1]
+max_tree = trees[-1]
 
 cnt = (max_tree - min_tree) // gcd_diff + 1 - n
 
