@@ -1,11 +1,13 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
 M, N = map(int, input().split())
 tomato = [list(map(int, input().split())) for _ in range(N)]
 q = deque()
 max_day = 0
 
-dx = [0, 1, 0, -1]
+dx = [0, 1, 0 ,-1]
 dy = [1, 0, -1, 0]
 
 for i in range(N):
