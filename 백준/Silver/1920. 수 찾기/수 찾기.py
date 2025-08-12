@@ -1,13 +1,25 @@
-import sys
-input = sys.stdin.readline
+n = int(input())
+n_nums = list(map(int, input().split()))
+n_nums.sort()
 
-N = int(input())
-set_1 = set(map(int, input().split()))
-M = int(input())
-arr_2 = list(map(int, input().split()))
+m = int(input())
+m_nums = list(map(int, input().split()))
 
-for num in arr_2:
-    if num in set_1:
-        print(1)
-    else:
+for num in m_nums:
+    left = 0
+    right = n-1
+    flag = 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if n_nums[mid] == num:
+            flag = 0
+            print(1)
+            break
+        elif n_nums[mid] > num:
+            right = mid - 1
+        elif n_nums[mid] < num:
+            left = mid + 1
+    if flag:
         print(0)
