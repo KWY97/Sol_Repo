@@ -1,25 +1,20 @@
-import sys
-input = sys.stdin.readline
-
 def dfs():
     if len(s) == M:
         print(' '.join(map(str, s)))
         return
 
     for i in range(N):
-        if used[i]:
-            continue
-        used[i] = True
-        s.append(nums[i])
-        dfs()
-        s.pop()
-        used[i] = False
+        if not used[i]:
+            s.append(nums[i])
+            used[i] = True
+            dfs()
+            s.pop()
+            used[i] = False
+
 
 
 N, M = map(int, input().split())
-nums = list(map(int, input().split()))
-nums.sort()
+nums = sorted(list(map(int, input().split())))
 used = [False] * N
 s = []
-
 dfs()
