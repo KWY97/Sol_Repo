@@ -32,24 +32,23 @@ temp = None
 if not check_right_parentheses():
     print(0)
 else:
-    # 0은 덧셈, 1은 곱셈
+    # 1은 곱셈, 0은 덧셈
     for i in range(n):
         if s[i] == '(':
             if stack:
-                stack.append(['(', 0, temp])
+                stack.append([1, temp])
             else:
-                stack.append(['(', 1, temp])
+                stack.append([0, temp])
             temp = None
         elif s[i] == '[':
             if stack:
-                stack.append(['[', 0, temp])
+                stack.append([1, temp])
             else:
-                stack.append(['[', 1, temp])
+                stack.append([0, temp])
             temp = None
         elif s[i] == ')':
-            shape, cal, prev_temp = stack.pop()
-            # 값 계산
-            # 처음 계산 되는 것이라면
+            cal, prev_temp = stack.pop()
+
             if temp is None:
                 frame_value = 2
             else:
@@ -60,15 +59,12 @@ else:
             else:
                 temp = prev_temp + frame_value
 
-            # 곱셈 이라면
-            if cal:
+            if not cal:
                 ans += temp
                 temp = None
-
         elif s[i] == ']':
-            shape, cal, prev_temp = stack.pop()
-            # 값 계산
-            # 처음 계산 되는 것이라면
+            cal, prev_temp = stack.pop()
+
             if temp is None:
                 frame_value = 3
             else:
@@ -79,9 +75,7 @@ else:
             else:
                 temp = prev_temp + frame_value
 
-            # 곱셈 이라면
-            if cal:
+            if not cal:
                 ans += temp
                 temp = None
-
     print(ans)
