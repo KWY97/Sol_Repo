@@ -1,30 +1,19 @@
-import sys
-input = sys.stdin.readline
-
-def my_dfs(n, sum):
-    global ans
-
-    if sum > N:
-        return
-
-    if sum == N:
-        ans = n
-        return
-
-    if n >= ans:
-        return
-
-    if ans == 1667:
-        if sum + 5 <= N:
-            my_dfs(n+1, sum + 5)
-        if sum + 3 <= N:
-            my_dfs(n+1, sum + 3)
-
 N = int(input())
-ans = 1667
-my_dfs(0, 0)
+#dp[i] = i킬로그램을 배달할 때 최소 봉지 수
+dp = [-1] * (N+1)
+dp[0] = 0
+dp[3] = 1
 
-if ans != 1667:
-    print(ans)
-else:
-    print(-1)
+for i in range(5, N+1):
+    best = 1667
+    if dp[i-3] != -1:
+        best = min(best, dp[i-3] + 1)
+    if dp[i-5] != -1:
+        best = min(best, dp[i-5] + 1)
+
+    if best == 1667:
+        dp[i] = -1
+    else:
+        dp[i] = best
+
+print(dp[N])
