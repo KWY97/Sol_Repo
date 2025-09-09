@@ -1,60 +1,24 @@
-T = int(input())
+n = int(input())
+in_scores = list(map(int, input().split()))
 
-if T == 5:
-    k, m, e, r, e2 = map(int, input().split())
-    score1 = abs(k-e)
-    score2 = abs(m-r)
-    score3 = e2 * 707
+k, m, e, r, e2 = 0, 1, 2, 3, 4
+scores = [0] * 5
 
-    if k > e:
-        score1 *= 508
-    else:
-        score1 *= 108
+for i in range(n):
+    scores[i] = in_scores[i]
 
-    if m > r:
-        score2 *= 212
-    else:
-        score2 *= 305
+score1 = abs(scores[k] - scores[e])
+score2 = abs(scores[m] - scores[r])
+score3 = scores[e2] * 707
 
-    print((score1 + score2 + score3) * 4763)
+if scores[k] > scores[e]:
+    score1 *= 508
+else:
+    score1 *= 108
 
-elif T == 4:
-    k, m, e, r = map(int, input().split())
-    score1 = abs(k - e)
-    score2 = abs(m - r)
+if scores[m] > scores[r]:
+    score2 *= 212
+else:
+    score2 *= 305
 
-    if k > e:
-        score1 *= 508
-    else:
-        score1 *= 108
-
-    if m > r:
-        score2 *= 212
-    else:
-        score2 *= 305
-
-    print((score1 + score2) * 4763)
-    
-elif T == 3:
-    k, m, e = map(int, input().split())
-    score1 = abs(k - e)
-    score2 = m * 212
-
-    if k > e:
-        score1 *= 508
-    else:
-        score1 *= 108
-
-    print((score1 + score2) * 4763)
-
-elif T == 2:
-    k, m = map(int, input().split())
-    score1 = k * 508
-    score2 = m * 212
-    
-    print((score1 + score2) * 4763)
-    
-elif T == 1:
-    k = int(input())
-    score1 = k * 508
-    print(score1 * 4763)
+print((score1 + score2 + score3) * 4763)
