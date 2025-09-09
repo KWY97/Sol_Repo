@@ -1,8 +1,10 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
 towers = list(map(int, input().split()))
 stack = []
-ans = 0
-
+ans = 1
 
 for tower in towers:
     if not stack:
@@ -15,9 +17,5 @@ for tower in towers:
             ans += 1
         else:
             stack.append(tower)
-
-
-if stack:
-    ans += 1
 
 print(ans)
