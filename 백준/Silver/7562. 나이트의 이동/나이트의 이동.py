@@ -1,15 +1,15 @@
 from collections import deque
 
-def bfs(in_x, in_y, in_cnt):
+def bfs(in_x, in_y):
     q = deque()
-    q.append([in_x, in_y, in_cnt])
-    visited[in_x][in_y] = 1
+    q.append((in_x, in_y))
+    visited[in_x][in_y] = 0
 
     while q:
-        x, y, cnt = q.popleft()
+        x, y = q.popleft()
 
         if x == e_i and y == e_j:
-            return cnt
+            return visited[x][y]
 
         for i in range(8):
             nx = x + dx[i]
@@ -17,11 +17,11 @@ def bfs(in_x, in_y, in_cnt):
 
             if nx < 0 or ny < 0 or nx >= n or ny >= n:
                 continue
-            if visited[nx][ny] == 1:
+            if visited[nx][ny] != -1:
                 continue
 
-            q.append([nx, ny, cnt+1])
-            visited[nx][ny] = 1
+            q.append((nx, ny))
+            visited[nx][ny] = visited[x][y] + 1
 
 T = int(input())
 dx = [-1, 1, 2, 2, 1, -1, -2, -2]
@@ -31,7 +31,7 @@ for _ in range(T):
     n = int(input())
     s_i, s_j = map(int, input().split())
     e_i, e_j = map(int, input().split())
-    visited = [[0] * n for _ in range(n)]
+    visited = [[-1] * n for _ in range(n)]
 
-    ans = bfs(s_i, s_j, 0)
+    ans = bfs(s_i, s_j)
     print(ans)
