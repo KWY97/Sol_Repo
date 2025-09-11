@@ -5,15 +5,16 @@ K, L = map(int, input().split())
 students_dict = {}
 cnt = 0
 
-for i in range(L):
+for _ in range(L):
     v = input().strip()
-    students_dict[v] = i
+    if v in students_dict:
+        del students_dict[v]
+    students_dict[v] = True
 
-sorted_students_dict = sorted(students_dict.items(), key = lambda x: x[1])
 
-for student in sorted_students_dict:
+for student in students_dict:
     if cnt < K:
-        print(student[0])
+        print(student)
         cnt += 1
     else:
         break
