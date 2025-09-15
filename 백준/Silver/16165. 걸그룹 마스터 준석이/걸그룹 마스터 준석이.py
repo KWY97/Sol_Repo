@@ -1,25 +1,26 @@
 N, M = map(int, input().split())
-singers = {}
+group2signer_dict = {}
+singer2group_dict = {}
 
 for _ in range(N):
-    name_singer = input()
-    singers[name_singer] = []
-    num_member = int(input())
+    group = input()
+    group2signer_dict.setdefault(group, [])
 
-    for _ in range(num_member):
-        name_member = input()
-        singers[name_singer].append(name_member)
+    K = int(input())
+
+    for _ in range(K):
+        singer = input()
+        group2signer_dict[group].append(singer)
+        singer2group_dict[singer] = group
 
 for _ in range(M):
-    question = input()
-    type_question = int(input())
+    q_name = input()
+    q_num = int(input())
 
-    if type_question == 0:
-        sorted_singers = sorted(singers[question])
-        for singer in sorted_singers:
-            print(singer)
+    if q_num:
+        print(singer2group_dict[q_name])
     else:
-        for key in singers:
-            if question in singers[key]:
-                print(key)
-                break
+        sorted_singer = sorted(group2signer_dict[q_name])
+
+        for singer in sorted_singer:
+            print(singer)
