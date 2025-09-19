@@ -1,53 +1,28 @@
 import sys
-input = sys.stdin.readline
-
-def time_to_minute(t):
-    '''
-    시간 -> 분 전환함수
-    :param t: "02:30" (str)
-    :return: "150" (int)
-    '''
-
-    time, minute = map(int, t.split(':'))
-    total_minute = time * 60 + minute
-
-    return total_minute
 
 S, E, Q = input().split()
-attendance = {}
-filtered = {}
-cnt = 0
+attendance = set()
+enter = {}
+exit = {}
 
-start = time_to_minute(S)
-end = time_to_minute(E)
-final_end = time_to_minute(Q)
-
-# 입퇴실 기록 출석부 만들기
 while True:
-    try:
-        T, name = input().split()
-        attendance.setdefault(name, []).append(T)
-    except:
+    line = sys.stdin.readline().strip()
+
+    if not line:
         break
 
-# 입퇴실 기록 체크
-for student, logs in attendance.items():
-    has_enter = False
-    has_exit = False
+    time, name = line.split()
 
-    i = 0
-    while i < len(logs):
-        t = time_to_minute(logs[i])
+    if time <= S:
+        enter[name] = True
+    elif E <= time <= Q:
+        exit[name] = True
 
-        if not has_enter and start >= t:
-            has_enter = True
-        if not has_exit and end <= t <= final_end:
-            has_exit = True
+    attendance.add(name)
 
-        if has_enter and has_exit:
-            cnt += 1
-            break
-
-        i += 1
+cnt = 0
+for name in attendance:
+    if name in enter and name in exit:
+        cnt += 1
 
 print(cnt)
