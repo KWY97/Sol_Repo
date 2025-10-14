@@ -1,0 +1,27 @@
+import heapq
+from collections import defaultdict
+
+N = int(input())
+M = int(input())
+graph = defaultdict(list)
+
+for _ in range(M):
+    u, v, w = map(int, input().split())
+    graph[u].append((w, v))
+
+start, finish = map(int, input().split())
+
+costs = {}
+pq = []
+heapq.heappush(pq, (0, start))
+
+while pq:
+    cur_cost, cur_v = heapq.heappop(pq)
+    if cur_v not in costs:
+        costs[cur_v] =  cur_cost
+
+        for cost, next_v in graph[cur_v]:
+            next_cost = cur_cost + cost
+            heapq.heappush(pq, (next_cost, next_v))
+
+print(costs[finish])
