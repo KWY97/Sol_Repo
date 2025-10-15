@@ -1,35 +1,41 @@
+import sys
 import heapq
+from collections import defaultdict
+input = sys.stdin.readline
 
-INF = 10**15
+
+def dijkstra(start, finish):
+    inf = 10**15
+    dist = [inf] * (N+1)
+    dist[start] = 0
+
+    pq = []
+    heapq.heappush(pq, (0, start))
+
+    while pq:
+        cur_w, cur_v = heapq.heappop(pq)
+
+        if cur_w > dist[cur_v]:
+            continue
+        if cur_v == finish:
+            break
+
+        for w, next_v in graph[cur_v]:
+            next_w = cur_w + w
+            if dist[next_v] > next_w:
+                dist[next_v] = next_w
+                heapq.heappush(pq, (next_w, next_v))
+
+    return dist[finish]
+
 N = int(input())
 M = int(input())
-graph = [[] for _ in range(N + 1)]
 
+graph = defaultdict(list)
 for _ in range(M):
-    u, v, w = map(int, input().split())
-    graph[u].append((v, w))
+    u, v, w = map(int, input().strip().split())
+    graph[u].append((w, v))
 
-start, finish = map(int, input().split())
-
-dist = [INF] * (N+1)
-dist[start] = 0
-
-pq = []
-heapq.heappush(pq, (0, start))
-
-while pq:
-    cur_w, cur_v = heapq.heappop(pq)
-    if cur_w > dist[cur_v]:
-        continue
-        
-    if cur_v == finish:
-        break
-
-    for next_v, w in graph[cur_v]:
-        next_w = cur_w + w
-
-        if next_w < dist[next_v]:
-            dist[next_v] = next_w
-            heapq.heappush(pq, (next_w, next_v))
-
-print(dist[finish])
+s, f = map(int, input().split())
+ans = dijkstra(s, f)
+print(ans)
