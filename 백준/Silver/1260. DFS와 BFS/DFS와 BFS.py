@@ -1,54 +1,50 @@
-from collections import deque
+from collections import defaultdict, deque
 
-def dfs(v):
-    visited = [False] * (N + 1)
-    stack = []
-    stack.append(v)
-    dfs_ans = []
+def dfs(start):
+    stack = [start]
+    visited = [False] * (N+1)
+    ans = []
 
     while stack:
-        v = stack.pop()
+        cur_node = stack.pop()
 
-        if not visited[v]:
-            visited[v] = True
-            dfs_ans.append(v)
+        if not visited[cur_node]:
+            visited[cur_node] = True
+            ans.append(cur_node)
 
-            for next_v in sorted(graph[v], reverse=True):
-                if not visited[next_v]:
-                    stack.append(next_v)
+            for next_node in reversed(graph[cur_node]):
+                if not visited[next_node]:
+                    stack.append(next_node)
+    return ans
 
-    return dfs_ans
+def bfs(start):
+    q = deque([start])
+    visited = [False] * (N+1)
+    ans = []
 
+    while q:
+        cur_node = q.popleft()
 
-def bfs(v):
-    visited = [False] * (N + 1)
-    queue = deque()
-    queue.append(v)
-    visited[v] = True
-    bfs_ans = []
+        if not visited[cur_node]:
+            visited[cur_node] = True
+            ans.append(cur_node)
 
-    while queue:
-        v = queue.popleft()
-        bfs_ans.append(v)
+            for next_node in graph[cur_node]:
+                if not visited[next_node]:
+                    q.append(next_node)
+    return ans
 
-        for next_v in graph[v]:
-            if not visited[next_v]:
-                visited[next_v] = True
-                queue.append(next_v)
-
-    return bfs_ans
 
 N, M, V = map(int, input().split())
-graph = [[] for _ in range(N+1)]
+graph = defaultdict(list)
+
 for _ in range(M):
-    s, e = map(int, input().split())
-    graph[s].append(e)
-    graph[e].append(s)
+    u, v = map(int, input().split())
+    graph[u].append(v)
+    graph[v].append(u)
 
-for lst in graph:
-    lst.sort()
-
-
+for key in graph:
+    graph[key].sort()
 
 print(' '.join(map(str, dfs(V))))
 print(' '.join(map(str, bfs(V))))
