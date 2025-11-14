@@ -1,5 +1,3 @@
-import sys
-input = sys.stdin.readline
 import heapq
 from collections import defaultdict
 
