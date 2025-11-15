@@ -1,10 +1,10 @@
 N, K = map(int, input().split())
-objs = [list(map(int, input().split())) for _ in range(N)]
+things = [list(map(int, input().split())) for _ in range(N)]
+
+# dp[i] = 무게 i까지 담을 수 있는 물건의 최대가치
 dp = [0] * (K+1)
 
-# dp[i] = 무게 i를 넘기지 않을 때 얻을 수 있는 최대 가치
-for w, v in objs:
+for w, v in things:
     for i in range(K, w-1, -1):
         dp[i] = max(dp[i], dp[i-w] + v)
-
-print(max(dp))
+print(dp[K])
