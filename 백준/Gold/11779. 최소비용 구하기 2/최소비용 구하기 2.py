@@ -1,53 +1,52 @@
-import heapq
-from collections import defaultdict
+import sys, heapq
+input = sys.stdin.readline
 
-
-def dijkstra(s, t):
+def dijkstra(s):
     dist = [INF] * (n+1)
     dist[s] = 0
-    prev = [0] * (n+1)
+    prev = [-1] * (n + 1)
+
     pq = []
     heapq.heappush(pq, (0, s))
 
     while pq:
-        cur_w, cur_v = heapq.heappop(pq)
+        cur_cost, cur_node = heapq.heappop(pq)
 
-        if dist[cur_v] < cur_w:
+        if dist[cur_node] < cur_cost:
             continue
 
-        for next_v, w in graph[cur_v]:
-            next_w = cur_w + w
+        for next_node, cost in graph[cur_node]:
+            next_cost = cur_cost + cost
 
-            if dist[next_v] > next_w:
-                dist[next_v] = next_w
-                prev[next_v] = cur_v
-                heapq.heappush(pq, (next_w, next_v))
-
-    return dist[t], prev
-
+            if dist[next_node] > next_cost:
+                dist[next_node] = next_cost
+                prev[next_node] = cur_node
+                heapq.heappush(pq, (next_cost, next_node))
+    return dist, prev
 
 n = int(input())
 m = int(input())
 graph = [[] for _ in range(n+1)]
 INF = int(1e12)
-route = []
 
 for _ in range(m):
     u, v, w = map(int, input().split())
     graph[u].append((v, w))
 
 start, target = map(int, input().split())
-ans1, prev = dijkstra(start, target)
+dist, prev = dijkstra(start)
+
+ans1 = dist[target]
 
 path = []
 cur = target
-while cur != 0:
+while cur != -1:
     path.append(cur)
     cur = prev[cur]
-path.reverse()
 
+path.reverse()
 ans2 = len(path)
-ans3 = (' '.join(map(str, path)))
+ans3 = ' '.join(map(str, path))
 
 print(ans1)
 print(ans2)
