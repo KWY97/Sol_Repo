@@ -7,7 +7,6 @@ public class Main {
 
         int n = sc.nextInt();
         int m = sc.nextInt();
-        int temp;
 
         int[] basket = new int[n];
 
@@ -16,15 +15,14 @@ public class Main {
         }
 
         for (int i = 0; i < m; i++) {
-            int basket1 = sc.nextInt();
-            basket1 -= 1;
-            int basket2 = sc.nextInt();
-            basket2 -= 1;
+            int from = sc.nextInt() - 1;
+            int to = sc.nextInt() - 1;
 
-            temp = basket[basket1];
-            basket[basket1] = basket[basket2];
-            basket[basket2] = temp;
+            int temp = basket[from];
+            basket[from] = basket[to];
+            basket[to] = temp;
         }
+        sc.close();
 
         for (int i = 0; i < n; i++) {
             if (i > 0) {
