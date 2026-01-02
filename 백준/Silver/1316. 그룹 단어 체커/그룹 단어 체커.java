@@ -5,14 +5,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        int result = 0;
         int n = sc.nextInt();
         sc.nextLine();
 
-        int result = 0;
-
         for (int i = 0; i < n; i++) {
-            char[] word = sc.nextLine().toCharArray();
-            result += check(word);
+            char[] s = sc.nextLine().toCharArray();
+            result += check(s);
         }
 
         System.out.println(result);
@@ -25,7 +24,7 @@ public class Main {
             int idx = word[i] - 'a';
 
             if (used[idx]) {
-                if (i > 0 && word[i-1] == word[i]) {
+                if (i > 0 && word[i] == word[i-1]) {
                     continue;
                 } else {
                     return 0;
