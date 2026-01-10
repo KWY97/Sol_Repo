@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 108080 KB, 시간: 84 ms
+메모리: 17676 KB, 시간: 160 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2024년 9월 12일 17:16:27
+2026년 1월 10일 14:43:49
 
 ### 문제 설명
 
@@ -34,9 +34,9 @@
 <table class="table table-bordered td-center">
 	<tbody>
 		<tr>
-			<td><img alt="" src="" style="width: 214px; height: 213px;"></td>
-			<td><img alt="" src="" style="width: 212px; height: 213px;"></td>
-			<td><img alt="" src="" style="width: 212px; height: 213px;"></td>
+			<td><img alt="" src="https://upload.acmicpc.net/5e446f0f-613c-4ce0-a626-6b0c2729ed1e/-/preview/" style="width: 214px; height: 213px;"></td>
+			<td><img alt="" src="https://upload.acmicpc.net/65c1bcf1-7d8a-463b-91df-d6cabcc2ceae/-/preview/" style="width: 212px; height: 213px;"></td>
+			<td><img alt="" src="https://upload.acmicpc.net/27b99467-cfdf-4ce3-a0b0-2897747edcf9/-/preview/" style="width: 212px; height: 213px;"></td>
 		</tr>
 		<tr>
 			<td>초기 상태 - 점 4개</td>
