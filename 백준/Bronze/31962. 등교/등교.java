@@ -12,9 +12,8 @@ public class Main {
             int s = sc.nextInt();
             int t = sc.nextInt();
 
-            int arrivalTime = s + t;
-            if (arrivalTime <= x) {
-                ans = s;
+            if (s + t <= x) {
+                ans = Math.max(ans, s);
             }
         }
 
